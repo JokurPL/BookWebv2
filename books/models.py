@@ -12,16 +12,6 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
-
-class Comment(models.Model):
-    content = models.TextField("Treść komentarza", max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Użytkownik")
-    pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
-
-    def __str__(self):
-        return self.content[:10]
-
-
 class Book(models.Model):
     book_title = models.CharField("Tytuł książki", max_length=50)
     book_desc = models.TextField("Opis książki", max_length=None)
@@ -30,9 +20,17 @@ class Book(models.Model):
     book_category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Kategoria")
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
     book_likes = models.IntegerField("Ocena", default=0)
-    comments = models.ManyToManyField(Comment, verbose_name="Komentarze")
 
     def __str__(self):
         return self.book_title
 
+
+class Comment(models.Model):
+    content = models.TextField("Treść komentarza", max_length=500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Użytkownik")
+    pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
+    book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)
+
+    def __str__(self):
+        return self.content[:10]
 

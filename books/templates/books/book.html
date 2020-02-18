@@ -1,0 +1,16 @@
+{% extends "books/template.html" %}
+{% block content %}
+
+    {{ book.book_title }}
+    <img src="{{ book.book_img.url }}" alt="">
+
+    <h1>Komentarze</h1>
+
+    {% for comment in comments %}
+        <p>{{ comment.content }}</p>
+        Napisany przez: {{ comment.user }}
+        <hr>
+    {% endfor %}
+
+{% endblock %}
+

@@ -15,7 +15,9 @@ class Category(models.Model):
 class Book(models.Model):
     book_title = models.CharField("Tytuł książki", max_length=50)
     book_desc = models.TextField("Opis książki", max_length=None)
-    book_img = models.ImageField("Okładka książki", blank=True, null=True, upload_to="covers/%Y/%m/%D/")
+    book_width = models.PositiveIntegerField("Szerokość okładki (w px)", default="200")
+    book_height = models.PositiveIntegerField("Wysokość okładki (w px)", default="400")
+    book_img = models.ImageField("Okładka książki", width_field='book_width', height_field='book_height', blank=True, null=True, upload_to="covers/%Y/%m/%D/")
     book_author = models.ManyToManyField(Author, verbose_name="Autor/Autorzy")
     book_category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Kategoria")
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)

@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff937ba-569b-42cb-a75c-108ecf22738e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/books/migrations/0002_auto_20200218_2320.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/templates/books/book.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/templates/books/template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/18/20/krolb1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0003_auto_20200219_2058.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0004_auto_20200219_2103.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0005_auto_20200219_2106.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0006_auto_20200219_2108.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0007_auto_20200219_2108.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/86295339_123490349054806_7447518276751458304_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/Beztytułu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/Beztytułu_J4SAztg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/krolb1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/szkomo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/19/20/szkomo_8zOYXAO.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/migrations/0002_auto_20200216_2206.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/migrations/0003_auto_20200216_2214.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/migrations/0004_auto_20200216_2225.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/migrations/0005_auto_20200216_2242.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,8 @@
       <workItem from="1581867530999" duration="6001000" />
       <workItem from="1581875637176" duration="2994000" />
       <workItem from="1581886435067" duration="3603000" />
-      <workItem from="1582061791124" duration="3116000" />
+      <workItem from="1582061791124" duration="3164000" />
+      <workItem from="1582133843605" duration="5892000" />
     </task>
     <servers />
   </component>

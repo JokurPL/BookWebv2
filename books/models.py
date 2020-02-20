@@ -21,8 +21,8 @@ class Book(models.Model):
     book_author = models.ManyToManyField(Author, verbose_name="Autor/Autorzy")
     book_category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Kategoria")
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
-    book_likes = models.IntegerField("Ocena", default=0)
-
+    book_likes = models.PositiveIntegerField("Plusy", default=0)
+    book_dislikes = models.PositiveIntegerField("Minusy", default=0)
     def __str__(self):
         return self.book_title
 

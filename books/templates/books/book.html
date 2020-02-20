@@ -1,16 +1,73 @@
 {% extends "books/template.html" %}
 {% block content %}
-
-    {{ book.book_title }}
-    <img src="{{ book.book_img.url }}" alt="">
-
-    <h1>Komentarze</h1>
-
-    {% for comment in comments %}
-        <p>{{ comment.content }}</p>
-        Napisany przez: {{ comment.user }}
-        <hr>
-    {% endfor %}
-
+    <br>
+    <div class="container-fluid center">
+        <div class="row">
+            <div class="col-md-auto">
+                <img src="{{ book.book_img.url }}" alt="">
+{#                <div>#}
+{#                    <span style="font-size: 120%;">Podobała się <b>{{ rate }}%</b> czytelnikom</span>#}
+{#                    +({{ book.book_likes }}) | ({{ book.book_dislikes }})#}
+{#                    <div class="d-flex">#}
+{#                        <br>#}
+{#                        <form action="{% url 'books:book_plus' book.id %}" method="post" style="margin-right: 2%">#}
+{#                             {% csrf_token %}#}
+{#                            <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;" class="material-icons">thumb_up</i><br>Podobała mi się</button>#}
+{#                        </form>#}
+{#                        <form action="{% url 'books:book_minus' book.id %}" method="post" style="margin-left: 2%" >#}
+{#                            {% csrf_token %}#}
+{#                            <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;" class="material-icons">thumb_down</i><br>Nie podobała mi się</button>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+            </div>
+            <div class="col">
+            <h1 class="text-monospace">{{ book.book_title }}</h1>
+                {% if book.book_author.count == 1 %}
+                    <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_autor' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
+                {% else %}
+                    <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_autor' book.id %}">{{author.name}}</a>{% endfor %}</h6>
+                {% endif %}
+                <hr>
+            <div>
+                <h2>Recenzja:</h2>
+                <p style="font-size: 125%;" class="text-justify">{{ book.book_desc }}</p>
+            </div>
+            <h1>Komentarze <hr></h1>
+{#                <form>#}
+{#                  <div class="form-group">#}
+{#                    <label for="nick">Pseudonim</label>#}
+{#                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">#}
+{#                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>#}
+{#                  </div>#}
+{#                  <div class="form-group">#}
+{#                    <label for="exampleInputPassword1">Treść komentarza</label>#}
+{#                    <input type="password" class="form-control" id="exampleInputPassword1">#}
+{#                  </div>#}
+{#                  <div class="form-group form-check">#}
+{#                    <input type="checkbox" class="form-check-input" id="exampleCheck1">#}
+{#                    <label class="form-check-label" for="exampleCheck1">Check me out</label>#}
+{#                  </div>#}
+{#                  <button type="submit" class="btn btn-primary">Submit</button>#}
+{#                </form>#}
+            {% if comments %}
+                {% for comment in comments %}
+                    <ul class="list-unstyled">
+                      <li class="media" style="padding: 1%; background: rgba(0,0,0,0.1); border-left: 2px solid #222;">
+                        <div class="media-body">
+                          <h5 class="mt-0 mb-1">{{ comment.user }}</h5>
+                            {{ comment.content }}
+                        </div>
+                      </li>
+                    </ul>
+                    <hr>
+                {% endfor %}
+                {% else %}
+                <div class="alert alert-warning" role="alert">
+                   <h6>Brak komentarzy</h6>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 

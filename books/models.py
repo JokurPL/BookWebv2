@@ -29,7 +29,8 @@ class Book(models.Model):
 
 class Comment(models.Model):
     content = models.TextField("Treść komentarza", max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Użytkownik")
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Użytkownik")
+    user = models.TextField("Użytkownik", max_length=25)
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
     book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)
 

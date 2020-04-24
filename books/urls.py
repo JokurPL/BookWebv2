@@ -1,10 +1,11 @@
 from django.urls import path
 
 from . import views
+from books.views import IndexBooksView
 
 app_name = 'books'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', IndexBooksView.as_view(), name='index'),
     #path('szukaj/<query>', views.search, name='search'),
     path('<book_id>/', views.book, name='book'),
     path('<book_id>/autor/', views.author, name='book_autor'),

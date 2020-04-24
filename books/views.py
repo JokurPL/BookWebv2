@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.views.generic import View
 import matplotlib.pyplot as plt
 
 from django.template import loader
@@ -9,13 +10,13 @@ from django.template import loader
 from .models import *
 
 
-# Create your views here.
-def index(request):
-    books = Book.objects.order_by('-pub_date')[:5]
-    context = {
-        'books': books,
-    }
-    return render(request, 'books/index.html', context)
+class IndexBooksView(View):
+    def get(self, request, *args, **kwargs):
+        books = Book.objects.order_by('-pub_date')[:5]
+        context = {
+            'books': books,
+        }
+        return render(request, 'books/index.html', context)
 
 
 def book(request, book_id):
@@ -28,7 +29,7 @@ def book(request, book_id):
     is_minus = request.session.get(name_session_minus)
     is_plus = request.session.get(name_session_plus)
     if user_count > 0:
-        rate = (book.book_likes / user_count)*100
+        rate = (book.book_likes / user_count) * 100
     else:
         rate = 0
     return render(request, 'books/book.html', {

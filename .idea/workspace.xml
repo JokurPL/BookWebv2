@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff937ba-569b-42cb-a75c-108ecf22738e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/books/migrations/0009_auto_20200221_2152.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Book.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/02/02/22/20/szkomo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/wykres_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/wykres_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/wykres_8.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/books/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/books/icons/Down.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/books/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
     </list>
@@ -145,6 +135,7 @@
       <workItem from="1582233257674" duration="1105000" />
       <workItem from="1582304949064" duration="8003000" />
       <workItem from="1582375575337" duration="6166000" />
+      <workItem from="1582477638608" duration="2745000" />
     </task>
     <servers />
   </component>

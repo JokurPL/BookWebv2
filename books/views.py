@@ -30,13 +30,14 @@ class IndexBooksView(View):
 class BookView(View):
     def get(self, request, book_id, *args, **kwargs):
         book = get_object_or_404(Book, pk=book_id)
-        comments = Comment.objects.filter(book_id=book_id)
+        comments = Comment.objects.filter(book_id=book_id).order_by('-pub_date')
         user_count = book.book_likes + book.book_dislikes
         title = book.book_title
         name_session_plus = 'voted_plus_' + str(book_id)
         name_session_minus = 'voted_minus_' + str(book_id)
         is_minus = request.session.get(name_session_minus)
         is_plus = request.session.get(name_session_plus)
+        votes = book.book_likes + book.book_dislikes
         if user_count > 0:
             rate = (book.book_likes / user_count) * 100
         else:
@@ -49,6 +50,7 @@ class BookView(View):
             'request': request,
             'is_plus': is_plus,
             'is_minus': is_minus,
+            'votes': votes,
         })
 
 

@@ -6,65 +6,85 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="shortcut icon" href="/media/Book.ico" />
+    <link rel="shortcut icon" href="/media/Book.ico"/>
     {% if title %}
-    <title>{{ title }} - BookWeb</title>
+        <title>{{ title }} - BookWeb</title>
     {% else %}
-    <title>BookWeb</title>
+        <title>BookWeb</title>
     {% endif %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% load static %}{% static 'loader.css' %}">
 </head>
 <body style="background: #e9ecef">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-              <a class="navbar-brand" href="/">BookWeb</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
 
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link {% block books_active %} {% endblock %}"  href="{% url 'books:index' %}">Książki</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {% block authors_active %} {% endblock %}" href="{% url 'books:authors' %}">Autorzy</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li>
-                </ul>
-                  {% if error_message %}
-                  <p>{{ error_message }}</p>
-                  {% endif %}
-                <form method="post" action="{% url 'books:search' %}"  class="form-inline my-2 my-lg-0">
-                    {% csrf_token %}
-                    <input name="query" class="form-control mr-sm-2" type="search" placeholder="Szukana fraza" aria-label="Search">
-                  <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Szukaj</button>
-                </form>
-              </div>
-            </nav>
-    {% block content %}
+{#<div class="loader-wrapper">#}
+{#    <span class="loader"><span></span></span>#}
+{#</div>#}
 
-    {% endblock %}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">BookWeb</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link {% block books_active %} {% endblock %}" href="{% url 'books:index' %}">Książki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block authors_active %} {% endblock %}"
+                   href="{% url 'books:authors' %}">Autorzy</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav" >
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Moje konto
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Zaloguj się</a>
+                    <a class="dropdown-item" href="#">Zajerestruj się</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Regulamin</a>
+                </div>
+            </li>
+        </ul>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+
+        <form method="post" action="{% url 'books:search' %}" class="form-inline my-2 my-lg-0">
+            {% csrf_token %}
+            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Szukana fraza"
+                   aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Szukaj</button>
+        </form>
+    </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% block scripts %}
 
 {% endblock %}
-
+{#<script type="text/javascript">#}
+{#    $(window).on('load', function () {#}
+{#        $('.loader-wrapper').fadeOut("slow");#}
+{#    })#}
+{#</script>#}
 </body>
 </html>

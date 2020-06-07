@@ -6,50 +6,69 @@
             <div class="col-md-auto">
                 <img src="{{ book.book_img.url }}" alt="">
                 <div>
-                    <span style="font-size: 120%;">Podobała się <b>{{ rate }}%</b> czytelnikom</span>
+                    <span style="font-size: 120%;">Podobała się <b>{{ rate }}%</b> czytelnikom <span
+                            style="font-size: 70%;">({{ votes }} {% if votes == 1 %}
+                        głos{% elif votes == 2 or votes == 3 or votes == 4 %}głosy{% else %}głosów{% endif %}
+                        )</span></span>
                     <div class="d-flex">
                         <br>
                         <form id="vote_plus" style="margin-right: 2%">
-                         {% csrf_token %}
+                            {% csrf_token %}
                             {% if is_plus == False and is_minus == True %}
                                 <fieldset disabled>
-                                    <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;" class="material-icons">thumb_up</i><br>Podobała mi się</button>
+                                    <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;"
+                                                                                             class="material-icons">thumb_up</i><br>Podobała
+                                        mi się
+                                    </button>
                                 </fieldset>
                             {% else %}
-                                    <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;" class="material-icons">thumb_up</i><br>Podobała mi się</button>
+                                <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;"
+                                                                                         class="material-icons">thumb_up</i><br>Podobała
+                                    mi się
+                                </button>
                             {% endif %}
                         </form>
-                        <form id="vote_minus" style="margin-left: 2%" >
-                        {% csrf_token %}
-                                {% if is_plus == True and is_minus == False %}
+                        <form id="vote_minus" style="margin-left: 2%">
+                            {% csrf_token %}
+                            {% if is_plus == True and is_minus == False %}
                                 <fieldset disabled>
-                                    <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;" class="material-icons">thumb_down</i><br>Nie podobała mi się</button>
+                                    <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
+                                                                                            class="material-icons">thumb_down</i><br>Nie
+                                        podobała mi się
+                                    </button>
                                 </fieldset>
-                                {% else %}
-                                    <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;" class="material-icons">thumb_down</i><br>Nie podobała mi się</button>
-                                {% endif %}
+                            {% else %}
+                                <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
+                                                                                        class="material-icons">thumb_down</i><br>Nie
+                                    podobała mi się
+                                </button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col">
-            <h1 class="text-monospace">{{ book.book_title }}</h1>
+                <h1 class="text-monospace">{{ book.book_title }}</h1>
                 {% if book.book_author.count == 1 %}
-                    <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
+                    <h6>Autor: {% for author in book.book_author.all %}
+                        <a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
                 {% else %}
-                    <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_author' book.id %}">{{author.name}}</a>{% endfor %}</h6>
+                    <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %}
+                        <a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a>{% endfor %}</h6>
                 {% endif %}
                 <hr>
-            <div>
-                <h2>Recenzja:</h2>
-                <p style="font-size: 125%;" class="text-justify">{{ book.book_desc }}</p>
-            </div>
-            <h1>Komentarze <hr></h1>
+                <div>
+                    <h2>Recenzja:</h2>
+                    <p style="font-size: 125%;" class="text-justify">{{ book.book_desc }}</p>
+                </div>
+                <h1>Komentarze
+                    <hr>
+                </h1>
                 <form id="comment_form">
                     {% csrf_token %}
                     <div class="form-group">
-                      <label for="content">Treść komentarza:</label>
-                      <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
+                        <label for="content">Treść komentarza:</label>
+                        <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="nick">Pseudonim:</label>
@@ -58,25 +77,27 @@
                     <button type="submit" class="btn btn-lg btn-primary">Dodaj komentarz</button>
                     <hr>
                 </form>
-            {% if comments %}
-                {% for comment in comments %}
-                    <ul class="list-unstyled">
-                      <li class="media" style="padding: 1%; background: rgba(0,0,0,0.1); border-left: 2px solid #222;">
-                        <div class="media-body">
-                          <h5 class="mt-0 mb-1">{{ comment.user }}</h5>
-                            {{ comment.content }}
-                        </div>
-                      </li>
-                    </ul>
-                    <hr>
-                {% endfor %}
+                {% if comments %}
+                    {% for comment in comments %}
+                        <ul class="list-unstyled">
+                            <li class="media"
+                                style="padding: 1%; background: rgba(0,0,0,0.1); border-left: 2px solid #222;">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">{{ comment.user }}</h5>
+                                    <p>{{ comment.content }}</p>
+                                    <span style="font-size: 80%; color: rgba(0, 0, 0, .3);"><i>{{ comment.pub_date }}</i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                    {% endfor %}
                 {% else %}
-                <div class="alert alert-warning" role="alert">
-                   <h6>Brak komentarzy</h6>
-                </div>
-            {% endif %}
+                    <div class="alert alert-warning" role="alert">
+                        <h6>Brak komentarzy</h6>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}
 {% block scripts %}

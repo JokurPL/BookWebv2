@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff937ba-569b-42cb-a75c-108ecf22738e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/books/templates/authors/authors.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/templates/books/search_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/05/05/22/20/PogO.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookWeb/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookWeb/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/books/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/templates/books/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
     </list>
@@ -80,6 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
@@ -97,6 +109,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="BookWeb.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -136,6 +149,16 @@
       <workItem from="1582304949064" duration="8003000" />
       <workItem from="1582375575337" duration="6166000" />
       <workItem from="1582477638608" duration="2745000" />
+      <workItem from="1589200082422" duration="3291000" />
+      <workItem from="1589214088354" duration="1722000" />
+      <workItem from="1589216256254" duration="252000" />
+      <workItem from="1589568542932" duration="557000" />
+      <workItem from="1589744344111" duration="58000" />
+      <workItem from="1589747387866" duration="33000" />
+      <workItem from="1590133024867" duration="2254000" />
+      <workItem from="1590137570064" duration="653000" />
+      <workItem from="1591463107542" duration="9845000" />
+      <workItem from="1591521656152" duration="4559000" />
     </task>
     <servers />
   </component>
@@ -159,45 +182,35 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581877941845">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="448" y="127" key="FileChooserDialogImpl" timestamp="1591526521202">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1581877941845" />
-    <state x="622" y="197" key="FileChooserDialogImpl" timestamp="1581878612849">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824/-1280.54.1280.984@0.0.1536.824" timestamp="1589747417554" />
+    <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590136381570" />
+    <state x="448" y="127" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1591526521202" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1591526522298">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1581878612849" />
-    <state x="591" y="328" key="Github.CreateGistDialog" timestamp="1581877382184">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1591526522298" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1591526522298">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="591" y="328" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1581877382184" />
-    <state x="639" y="306" key="Github.ShareDialog" timestamp="1581877550883">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1591526522298" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1591526522298">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="639" y="306" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1581877550883" />
-    <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1581877963884">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590136383354" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1591526522298" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1591526522298">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="189" height="457" key="HiddenNamespacesPopup/0.0.1536.824@0.0.1536.824" timestamp="1581877963884" />
-    <state x="277" y="55" key="SettingsEditor" timestamp="1581878490292">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1591526522298" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1591466091638">
+      <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581878490292" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1581878569727">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581878569727" />
-    <state x="359" y="330" key="com.intellij.ide.util.TipDialog" timestamp="1581886447192">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="359" y="330" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581886447192" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581878529749">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1581878529749" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1582064885837">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1582064885837" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1591466091638" />
   </component>
 </project>

@@ -1,6 +1,6 @@
 {% extends "books/template.html" %}
-{% block books_active %} active {% endblock %}
 {% block content %}
+    <h1 style="padding: 2%">Szukana fraza: <b>{{ query }}</b> <span style="font-size: 50%">({{ books.count }} {% if books.count == 0 %}wyników{% elif books.count == 1 %}wynik{% else %}wyniki{% endif %} )</span></h1>
      <div class="container">
          <br>
         {% if books %}
@@ -18,8 +18,7 @@
                                           {% else %}
                                             <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_author' book.id %}">{{author.name}}</a>{% endfor %}</h6>
                                       {% endif %}
-                                <p class="card-text">{{ book.book_desc|truncatewords:50 }} </p>
-                                <p class="text-center"><a href="{% url 'books:book' book.id %}">Czytaj dalej</a>  </p>
+                              <p class="card-text">{{ book.book_desc|truncatewords:50 }}</p>
                             </div>
                             <div class="card-footer">
                                 {% if book.book_likes > 0 %}

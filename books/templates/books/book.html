@@ -9,8 +9,8 @@
                     <span style="font-size: 120%;">Podobała się <b>{{ rate }}%</b> czytelnikom</span>
                     <div class="d-flex">
                         <br>
-                        <form action="{% url 'books:book_plus' book.id %}" method="post" style="margin-right: 2%">
-                        {% csrf_token %}
+                        <form id="vote_plus" style="margin-right: 2%">
+                         {% csrf_token %}
                             {% if is_plus == False and is_minus == True %}
                                 <fieldset disabled>
                                     <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;" class="material-icons">thumb_up</i><br>Podobała mi się</button>
@@ -18,9 +18,9 @@
                             {% else %}
                                     <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;" class="material-icons">thumb_up</i><br>Podobała mi się</button>
                             {% endif %}
-                            </form>
-                        <form action="{% url 'books:book_minus' book.id %}" method="post" style="margin-left: 2%" >
-                            {% csrf_token %}
+                        </form>
+                        <form id="vote_minus" style="margin-left: 2%" >
+                        {% csrf_token %}
                                 {% if is_plus == True and is_minus == False %}
                                 <fieldset disabled>
                                     <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;" class="material-icons">thumb_down</i><br>Nie podobała mi się</button>
@@ -35,9 +35,9 @@
             <div class="col">
             <h1 class="text-monospace">{{ book.book_title }}</h1>
                 {% if book.book_author.count == 1 %}
-                    <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_autor' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
+                    <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
                 {% else %}
-                    <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_autor' book.id %}">{{author.name}}</a>{% endfor %}</h6>
+                    <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_author' book.id %}">{{author.name}}</a>{% endfor %}</h6>
                 {% endif %}
                 <hr>
             <div>
@@ -45,11 +45,11 @@
                 <p style="font-size: 125%;" class="text-justify">{{ book.book_desc }}</p>
             </div>
             <h1>Komentarze <hr></h1>
-                <form method="post" action="{% url 'books:book_add_comment' book.id %}">
+                <form id="comment_form">
                     {% csrf_token %}
                     <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Treść komentarza:</label>
-                      <textarea name="content" required class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                      <label for="content">Treść komentarza:</label>
+                      <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="nick">Pseudonim:</label>
@@ -78,4 +78,59 @@
         </div>
     </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+
+        $(document).on('submit', '#vote_plus', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'books:book_plus' book.id %}',
+                data: {
+                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function () {
+                    location.reload();
+                }
+            });
+
+        });
+
+        $(document).on('submit', '#vote_minus', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'books:book_minus' book.id %}',
+                data: {
+                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function () {
+                    location.reload();
+                }
+            });
+
+        });
+
+        $(document).on('submit', '#comment_form', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'books:book_add_comment' book.id %}',
+                data: {
+                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                    content: $('#content').val(),
+                    nick: $('#nick').val(),
+                },
+                success: function () {
+                    location.reload();
+                }
+            });
+
+        });
+
+    </script>
 {% endblock %}

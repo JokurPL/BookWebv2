@@ -16,13 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from django.conf.urls import url
+from django.conf.urls import url, handler404, handler400, handler403, handler500
 from django.conf import settings
 from django.views.static import serve
 
+path_to_error = 'books.views.error_4xx'
+
+handler404 = path_to_error
+handler400 = path_to_error
+handler403 = path_to_error
+handler500 = 'books.views.error_500'
 
 urlpatterns = [
-    path('ksiazki/', include('books.urls')),
+    path('', include('books.urls')),
     path('panel-administratora/', admin.site.urls),
 ]
 

@@ -1,0 +1,25 @@
+{% extends 'books/template.html' %}
+{% block authors_active %} active {% endblock %}
+{% block content %}
+    <div class="container">
+        <br>
+        {% if authors %}
+            <div class="row row-cols-1 row-cols-md-3">
+                {% for author in authors %}
+                    <div class="col mb-4">
+                        <div class="card">
+                            <div class="card-body ">
+                                <h1 class="card-title text-center"><a href="{% url 'books:book_author' author.id %}">{{ author.name }}</a></h1>
+                                <hr>
+                                <h6>Kategorie książek: <a href="">Fantasy</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+{% else %}
+    <h1 class="color-danger">Brak autorów</h1>
+{% endif %}
+
+{% endblock %}

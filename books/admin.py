@@ -3,6 +3,7 @@ from .models import Book, Author, Category, Comment
 # Register your models here.
 from django.db import models
 
+
 class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('book_likes', 'pub_date',)
     fieldsets = [

@@ -39,35 +39,90 @@
                    href="{% url 'books:authors' %}">Autorzy</a>
             </li>
         </ul>
-        <ul class="navbar-nav" >
+        <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Moje konto
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Zaloguj się</a>
-                    <a class="dropdown-item" href="#">Zajerestruj się</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Regulamin</a>
-                </div>
-            </li>
-        </ul>
-        {% if error_message %}
-            <p>{{ error_message }}</p>
-        {% endif %}
+                    <div class="card" style="width: 18rem; margin: 0 auto; border: none">
+                        <div class="card-body">
+                            {% if error %}
+                                <h1>Błąd</h1>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <h5 class="card-title">Witaj <b>{{ user.username }}</b>!</h5>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <form id="logout">
+                                    <button type="submit" class="dropdown-item" href="{% url 'books:logout' %}">Wyloguj
+                                        się
+                                    </button>
+                                </form>
+                                </div>
+                            {% elif not user.is_authenticated %}
+                                <div class="login">
+                                <h5 class="card-title">Zaloguj się</h5>
 
-        <form method="post" action="{% url 'books:search' %}" class="form-inline my-2 my-lg-0">
-            {% csrf_token %}
-            <input name="query" class="form-control mr-sm-2" type="search" placeholder="Szukana fraza"
-                   aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Szukaj</button>
-        </form>
+                                <form id="login" style="padding: 5%; width: 100%;">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="username">Nazwa użytkownika</label>
+                                        <input type="text" class="form-control" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Hasło</label>
+                                        <input type="password" class="form-control" id="password">
+
+                                    </div>
+                                    <p id="errorText" class="text-danger text-center">Niepoprawna nazwa użtykownika lub
+                                        hasło</p>
+                                    <button type="submit" class="btn btn-primary text-center">Zaloguj się</button>
+                                </form>
+                                    </div>
+                                <div class="register">
+                                <h5 class="card-title">Zajerestruj się</h5>
+
+                                <form id="register" style="padding: 5%; width: 100%;">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="username">Nazwa użytkownika</label>
+                                        <input type="text" class="form-control" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Hasło</label>
+                                        <input type="password" class="form-control" id="password">
+                                    </div>
+                                    <p id="errorText" class="text-danger text-center">Niepoprawna nazwa użtykownika lub
+                                        hasło</p>
+                                    <button type="submit" class="btn btn-primary text-center">Zajerestruj się</button>
+                                </form>
+                                </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a id="register_button" style="cursor: pointer;" class="dropdown-item" >Zajerestruj się</a>
+                                </div>
+                            {% endif %}
+    </div>
+    </li>
+    </ul>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <form method="post" action="{% url 'books:search' %}" class="form-inline my-2 my-lg-0">
+        {% csrf_token %}
+        <input name="query" class="form-control mr-sm-2" type="search" placeholder="Szukana fraza"
+               aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Szukaj</button>
+    </form>
     </div>
 </nav>
+
 {% block content %}
 
 {% endblock %}
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -86,5 +141,67 @@
 {#        $('.loader-wrapper').fadeOut("slow");#}
 {#    })#}
 {#</script>#}
+<script type="text/javascript">
+
+    $('.dropdown-menu').on('click', function (e) {
+        e.stopPropagation();
+    });
+
+    $(window).on('load', function () {
+        $('#errorText').fadeOut();
+        $('.register').fadeOut();
+    });
+
+    $('#register_button').click(function (e) {
+        $('.register').slideToggle();
+        $('.login').slideToggle();
+        console.log($(this).text());
+        if($(this).text() === "Zaloguj się") {
+             $('#register_button').html("Zajerestruj się");
+        }
+        else {
+            $('#register_button').html("Zaloguj się");
+        }
+    });
+
+
+    $(document).on('submit', '#login', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'books:login' %}',
+            data: {
+                username: $('#username').val(),
+                password: $('#password').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (response) {
+                if (response['result'] === 'success') {
+                    location.reload();
+                } else {
+                    $('#errorText').fadeIn("slow");
+                }
+            },
+        });
+
+    });
+
+    $(document).on('submit', '#logout', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'books:logout' %}',
+            data: {
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function () {
+                location.reload();
+            },
+        });
+
+    });
+</script>
 </body>
 </html>

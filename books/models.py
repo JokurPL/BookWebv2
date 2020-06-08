@@ -7,8 +7,6 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 # Create your models here.
-IM_RESIZE = im.resize((350, 490))
-
 
 class Author(models.Model):
     name = models.CharField("Autor", max_length=50)
@@ -42,6 +40,8 @@ class Book(models.Model):
         im = Image.open(self.book_img)
 
         output = BytesIO()
+
+        IM_RESIZE = im.resize((350, 490))
 
         # Resize/modify the image
         im = IM_RESIZE

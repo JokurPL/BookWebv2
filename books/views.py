@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.views.generic import View
 from django.db.models import Q
 import matplotlib.pyplot as plt
-
+from django.contrib.auth import authenticate, login, logout
+import json
 from django.template import loader
 
 from .models import *
@@ -66,6 +67,25 @@ class AuthorsView(View):
 
 def author(request, author_id):
     return HttpResponse(author_id)
+
+
+def log_in(request):
+    if request.is_ajax() and request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        response_data = {}
+        if user is not None:
+            login(request, user)
+            response_data['result'] = 'success'
+        else:
+            response_data['result'] = 'failed'
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def log_out(request):
+    logout(request)
+    return HttpResponse('')
 
 
 def book_add_comment(request, book_id):

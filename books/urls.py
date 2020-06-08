@@ -14,4 +14,6 @@ urlpatterns = [
     path('<book_id>/dodaj-komentarz', views.book_add_comment, name='book_add_comment'),
     path('<book_id>/plus', views.vote_plus, name='book_plus'),
     path('<book_id>/minus', views.vote_minus, name='book_minus'),
+    path('zaloguj-sie', views.log_in, name='login'),
+    path('wyloguj-sie', views.log_out, name='logout'),
 ]

@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff937ba-569b-42cb-a75c-108ecf22738e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/static/loader.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/a-b-c-herkules-poirot-tom-13-w-iext37532884.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/a-b-c-herkules-poirot-tom-13-w-iext37532884_ZHlFTB8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/5_axPFi9D.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/08/20/8_jtUkzsj.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookWeb/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/authors/authors.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/authors/authors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/books/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/book.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/books/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
@@ -69,6 +60,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -175,6 +167,8 @@
       <workItem from="1591528735638" duration="4435000" />
       <workItem from="1591545492013" duration="8285000" />
       <workItem from="1591559938632" duration="3487000" />
+      <workItem from="1591613549485" duration="7341000" />
+      <workItem from="1591627606053" duration="4396000" />
     </task>
     <task id="LOCAL-00001" summary="Star using Ajax">
       <created>1591528760828</created>
@@ -218,10 +212,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Star using Ajax" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="40" key="CommitChangelistDialog2" timestamp="1591569917203">
+    <state x="393" y="40" key="CommitChangelistDialog2" timestamp="1591569927444">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="393" y="40" key="CommitChangelistDialog2/0.30.1536.834@0.30.1536.834" timestamp="1591569917203" />
+    <state x="393" y="40" key="CommitChangelistDialog2/0.30.1536.834@0.30.1536.834" timestamp="1591569927444" />
     <state x="93" y="123" width="1350" height="648" key="DiffContextDialog" timestamp="1591528977068">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
@@ -232,30 +226,30 @@
     <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824/-1280.54.1280.984@0.0.1536.824" timestamp="1589747417554" />
     <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590136381570" />
     <state x="448" y="127" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1591526521202" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1591560608991">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1591628865520">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1591560608991" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1591560608991">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1591628865520" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1591628865520">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1591560608991" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1591560608990">
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1591628865520" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1591628865520">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590136383354" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1591560608990" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1591560608991">
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1591628865520" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1591628865520">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1591560608991" />
-    <state x="361" y="180" key="Vcs.Push.Dialog.v2" timestamp="1591528996490">
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1591628865520" />
+    <state x="361" y="180" key="Vcs.Push.Dialog.v2" timestamp="1591569935513">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="361" y="180" key="Vcs.Push.Dialog.v2/0.30.1536.834@0.30.1536.834" timestamp="1591528996490" />
+    <state x="361" y="180" key="Vcs.Push.Dialog.v2/0.30.1536.834@0.30.1536.834" timestamp="1591569935513" />
     <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1591568512502">
       <screen x="0" y="30" width="1536" height="834" />
     </state>

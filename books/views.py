@@ -95,14 +95,14 @@ def register_user(request):
             response_data['result'] = 'failed'
         else:
             group = Group.objects.get(name='user')
-            c_user = User.objects.create(
+            user = User.objects.create_user(
                 username=username,
                 email=email,
                 password=password,
             )
-            c_user.groups.add(group)
-            c_user.save()
-            user = authenticate(request, username=username, password=password)
+            user.groups.add(group)
+            user.save()
+            login(request, user)
             response_data['result'] = 'success'
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 

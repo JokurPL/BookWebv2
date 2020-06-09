@@ -63,45 +63,56 @@
                                 </div>
                             {% elif not user.is_authenticated %}
                                 <div class="login">
-                                <h5 class="card-title">Zaloguj się</h5>
+                                    <h5 class="card-title">Zaloguj się</h5>
 
-                                <form id="login" style="padding: 5%; width: 100%;">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="username">Nazwa użytkownika</label>
-                                        <input type="text" class="form-control" id="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Hasło</label>
-                                        <input type="password" class="form-control" id="password">
+                                    <form id="login" style="padding: 5%; width: 100%;">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="username">Nazwa użytkownika</label>
+                                            <input type="text" class="form-control" id="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Hasło</label>
+                                            <input type="password" class="form-control" id="password">
 
-                                    </div>
-                                    <p id="errorText" class="text-danger text-center">Niepoprawna nazwa użtykownika lub
-                                        hasło</p>
-                                    <button type="submit" class="btn btn-primary text-center">Zaloguj się</button>
-                                </form>
-                                    </div>
+                                        </div>
+                                        <p id="errorText" class="text-danger text-center">Niepoprawna nazwa użtykownika
+                                            lub
+                                            hasło</p>
+                                        <button type="submit" class="btn btn-primary text-center">Zaloguj się</button>
+                                    </form>
+                                </div>
                                 <div class="register">
-                                <h5 class="card-title">Zajerestruj się</h5>
+                                    <h5 class="card-title">Zajerestruj się</h5>
 
-                                <form id="register" style="padding: 5%; width: 100%;">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="username">Nazwa użytkownika</label>
-                                        <input type="text" class="form-control" id="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Hasło</label>
-                                        <input type="password" class="form-control" id="password">
-                                    </div>
-                                    <p id="errorText" class="text-danger text-center">Niepoprawna nazwa użtykownika lub
-                                        hasło</p>
-                                    <button type="submit" class="btn btn-primary text-center">Zajerestruj się</button>
-                                </form>
+                                    <form id="register" style="padding: 5%; width: 100%;">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="username_reg">Nazwa użytkownika</label>
+                                            <input required type="text" class="form-control" id="username_reg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_reg">Adres e-mail</label>
+                                            <input required type="email" class="form-control" id="email_reg"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password_reg">Hasło</label>
+                                            <input required type="password" class="form-control" id="password_reg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password_repeat">Powtórz hasło</label>
+                                            <input required type="password" class="form-control" id="password_repeat">
+                                        </div>
+                                        <p id="errorRegisterText" class="text-danger text-center">Podane hasła nie zgadzają się</p>
+                                        <button type="submit" class="btn btn-primary text-center">Zajerestruj się
+                                        </button>
+                                    </form>
                                 </div>
                                 </div>
                                 <div class="dropdown-divider"></div>
-                                <a id="register_button" style="cursor: pointer;" class="dropdown-item" >Zajerestruj się</a>
+                                <a id="register_button" style="cursor: pointer;" class="dropdown-item">Zajerestruj
+                                    się</a>
                                 </div>
                             {% endif %}
     </div>
@@ -150,16 +161,16 @@
     $(window).on('load', function () {
         $('#errorText').fadeOut();
         $('.register').fadeOut();
+        $('#errorRegisterText').fadeOut();
     });
 
     $('#register_button').click(function (e) {
         $('.register').slideToggle();
         $('.login').slideToggle();
         console.log($(this).text());
-        if($(this).text() === "Zaloguj się") {
-             $('#register_button').html("Zajerestruj się");
-        }
-        else {
+        if ($(this).text() === "Zaloguj się") {
+            $('#register_button').html("Zajerestruj się");
+        } else {
             $('#register_button').html("Zaloguj się");
         }
     });
@@ -181,6 +192,30 @@
                     location.reload();
                 } else {
                     $('#errorText').fadeIn("slow");
+                }
+            },
+        });
+
+    });
+
+      $(document).on('submit', '#register', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'books:register_user' %}',
+            data: {
+                username: $('#username_reg').val(),
+                password: $('#password_reg').val(),
+                password_repeat: $('#password_repeat').val(),
+                email: $('#email_reg').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (response) {
+                if (response['result'] === 'success') {
+                    location.reload();
+                } else {
+                    $('#errorRegisterText').fadeIn("slow");
                 }
             },
         });

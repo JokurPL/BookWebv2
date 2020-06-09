@@ -5,6 +5,7 @@ from django.views.generic import View
 from django.db.models import Q
 import matplotlib.pyplot as plt
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 import json
 from django.template import loader
 
@@ -80,6 +81,29 @@ def log_in(request):
             response_data['result'] = 'success'
         else:
             response_data['result'] = 'failed'
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def register_user(request):
+    if request.is_ajax() and request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        password_repeat = request.POST['password_repeat']
+        email = request.POST['email']
+        response_data = {}
+        if password != password_repeat:
+            response_data['result'] = 'failed'
+        else:
+            group = Group.objects.get(name='user')
+            c_user = User.objects.create(
+                username=username,
+                email=email,
+                password=password,
+            )
+            c_user.groups.add(group)
+            c_user.save()
+            user = authenticate(request, username=username, password=password)
+            response_data['result'] = 'success'
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 

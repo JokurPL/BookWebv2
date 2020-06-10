@@ -95,15 +95,23 @@ def register_user(request):
             response_data['result'] = 'failed'
         else:
             group = Group.objects.get(name='user')
-            user = User.objects.create_user(
-                username=username,
-                email=email,
-                password=password,
-            )
-            user.groups.add(group)
-            user.save()
-            login(request, user)
-            response_data['result'] = 'success'
+            try:
+                user = User.objects.get(username=username)
+                response_data['result'] = 'username_exist'
+            except User.DoesNotExist:
+                try:
+                    user = User.objects.get(email=email)
+                    response_data['result'] = 'email_exist'
+                except User.DoesNotExist:
+                    user = User.objects.create_user(
+                        username=username,
+                        email=email,
+                        password=password,
+                    )
+                    user.groups.add(group)
+                    user.save()
+                    login(request, user)
+                    response_data['result'] = 'success'
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
@@ -114,10 +122,10 @@ def log_out(request):
 
 def book_add_comment(request, book_id):
     if request.is_ajax() and request.method == 'POST':
-        nick = request.POST['nick']
+        user = get_object_or_404(User, pk=request.POST['user_id'])
         content = request.POST['content']
         book = get_object_or_404(Book, pk=book_id)
-        comment = Comment(user=nick, content=content, book=book)
+        comment = Comment(user=user, content=content, book=book)
         comment.save()
         return HttpResponse('')
 

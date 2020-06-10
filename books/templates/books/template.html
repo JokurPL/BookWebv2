@@ -14,7 +14,6 @@
     {% endif %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% load static %}{% static 'loader.css' %}">
 </head>
 <body style="background: #e9ecef">
 
@@ -104,7 +103,15 @@
                                             <label for="password_repeat">Powtórz hasło</label>
                                             <input required type="password" class="form-control" id="password_repeat">
                                         </div>
-                                        <p id="errorRegisterText" class="text-danger text-center">Podane hasła nie zgadzają się</p>
+                                        <div class="form-group form-check">
+                                            <input required type="checkbox" class="form-check-input" id="rules">
+                                            <label class="form-check-label" for="rules">Akceptuję <a href="#">regulamin</a></label>
+                                        </div>
+                                        <p id="errorPasswordText" class="text-danger text-center">Podane hasła nie
+                                            zgadzają się</p>
+                                        <p id="username_exist" class="text-danger text-center">Użytkownik o takiej
+                                            nazwie już istnieje</p>
+                                        <p id="email_exist" class="text-danger text-center">Email jest już zajęty</p>
                                         <button type="submit" class="btn btn-primary text-center">Zajerestruj się
                                         </button>
                                     </form>
@@ -154,20 +161,27 @@
 {#</script>#}
 <script type="text/javascript">
 
+    hidden = [
+        '#errorText',
+        '.register',
+        '#errorPasswordText',
+        '#username_exist',
+        '#email_exist'
+    ];
+
     $('.dropdown-menu').on('click', function (e) {
         e.stopPropagation();
     });
 
     $(window).on('load', function () {
-        $('#errorText').fadeOut();
-        $('.register').fadeOut();
-        $('#errorRegisterText').fadeOut();
+        for (i in hidden) {
+            $(hidden[i]).fadeOut();
+        }
     });
 
     $('#register_button').click(function (e) {
         $('.register').slideToggle();
         $('.login').slideToggle();
-        console.log($(this).text());
         if ($(this).text() === "Zaloguj się") {
             $('#register_button').html("Zajerestruj się");
         } else {
@@ -198,7 +212,7 @@
 
     });
 
-      $(document).on('submit', '#register', function (e) {
+    $(document).on('submit', '#register', function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -212,10 +226,25 @@
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
             },
             success: function (response) {
-                if (response['result'] === 'success') {
-                    location.reload();
-                } else {
-                    $('#errorRegisterText').fadeIn("slow");
+                switch (response['result']) {
+                    case 'success':
+                        location.reload();
+                        break;
+                    case 'failed':
+                        $('#username_exist').fadeOut();
+                        $('#email_exist').fadeOut();
+                        $('#errorPasswordText').fadeIn("slow");
+                        break;
+                    case 'username_exist':
+                        $('#errorPasswordText').fadeOut();
+                        $('#email_exist').fadeOut();
+                        $('#username_exist').fadeIn("slow");
+                        break;
+                    case 'email_exist':
+                        $('#username_exist').fadeOut();
+                        $('#errorPasswordText').fadeOut();
+                        $('#email_exist').fadeIn("slow");
+                        break;
                 }
             },
         });

@@ -10,41 +10,49 @@
                             style="font-size: 70%;">({{ votes }} {% if votes == 1 %}
                         głos{% elif votes == 2 or votes == 3 or votes == 4 %}głosy{% else %}głosów{% endif %}
                         )</span></span>
+
                     <div class="d-flex">
-                        <br>
-                        <form id="vote_plus" style="margin-right: 2%">
-                            {% csrf_token %}
-                            {% if is_plus == False and is_minus == True %}
-                                <fieldset disabled>
+                        {% if user.is_authenticated %}
+                            <br>
+                            <form id="vote_plus" style="margin-right: 2%">
+                                {% csrf_token %}
+                                {% if is_plus == False and is_minus == True %}
+                                    <fieldset disabled>
+                                        <button type="submit" class="btn btn-outline-success"><i
+                                                style="font-size: 200%;"
+                                                class="material-icons">thumb_up</i><br>Podobała
+                                            mi się
+                                        </button>
+                                    </fieldset>
+                                {% else %}
                                     <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;"
                                                                                              class="material-icons">thumb_up</i><br>Podobała
                                         mi się
                                     </button>
-                                </fieldset>
-                            {% else %}
-                                <button type="submit" class="btn btn-outline-success"><i style="font-size: 200%;"
-                                                                                         class="material-icons">thumb_up</i><br>Podobała
-                                    mi się
-                                </button>
-                            {% endif %}
-                        </form>
-                        <form id="vote_minus" style="margin-left: 2%">
-                            {% csrf_token %}
-                            {% if is_plus == True and is_minus == False %}
-                                <fieldset disabled>
+                                {% endif %}
+                            </form>
+                            <form id="vote_minus" style="margin-left: 2%">
+                                {% csrf_token %}
+                                {% if is_plus == True and is_minus == False %}
+                                    <fieldset disabled>
+                                        <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
+                                                                                                class="material-icons">thumb_down</i><br>Nie
+                                            podobała mi się
+                                        </button>
+                                    </fieldset>
+                                {% else %}
                                     <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
                                                                                             class="material-icons">thumb_down</i><br>Nie
                                         podobała mi się
                                     </button>
-                                </fieldset>
-                            {% else %}
-                                <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
-                                                                                        class="material-icons">thumb_down</i><br>Nie
-                                    podobała mi się
-                                </button>
-                            {% endif %}
-                        </form>
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <p style="margin: 1% auto;" class="text-center alert alert-primary">Aby zagłosować musisz
+                                być zalogowany</p>
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
             <div class="col">
@@ -65,17 +73,16 @@
                     <hr>
                 </h1>
                 <form id="comment_form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="content">Treść komentarza:</label>
-                        <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="nick">Pseudonim:</label>
-                        <input name="nick" required type="text" class="form-control" id="nick">
-                    </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Dodaj komentarz</button>
-                    <hr>
+                    <fieldset {% if not user.is_authenticated %}disabled{% endif %}>
+                        <input type="hidden" id="user_id" value="{{ user.id }}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="content">Treść komentarza:</label>
+                            <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-primary">{% if not user.is_authenticated %}Zaloguj się, aby dodać komentarz{% else %}Dodaj komentarz{% endif %}</button>
+                        <hr>
+                    </fieldset>
                 </form>
                 {% if comments %}
                     {% for comment in comments %}
@@ -83,7 +90,7 @@
                             <li class="media"
                                 style="padding: 1%; background: rgba(0,0,0,0.1); border-left: 2px solid #222;">
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb-1">{{ comment.user }}</h5>
+                                    <h5 class="mt-0 mb-1">{{ comment.user.username }}</h5>
                                     <p>{{ comment.content }}</p>
                                     <span style="font-size: 80%; color: rgba(0, 0, 0, .3);"><i>{{ comment.pub_date }}</i></span>
                                 </div>
@@ -143,6 +150,7 @@
                 url: '{% url 'books:book_add_comment' book.id %}',
                 data: {
                     csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                    user_id: $('#user_id').val(),
                     content: $('#content').val(),
                     nick: $('#nick').val(),
                 },

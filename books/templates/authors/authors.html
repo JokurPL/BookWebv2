@@ -14,7 +14,7 @@
                                 Andrzej Sapkowski (ur. 21 czerwca 1948 w Łodzi) – polski pisarz fantasy, z wykształcenia ekonomista[1]. Twórca postaci wiedźmina. Jest najczęściej po Lemie tłumaczonym polskim autorem fantastyki[2].
 
 W 2012 roku minister kultury i dziedzictwa narodowego Bogdan Zdrojewski odznaczył go srebrnym medalem Gloria Artis[3].
-                                <h6>Książki: {% for book in author.book_set.all  %}{% if not forloop.first %},{% endif %}<a href=""> {{ book }}</a>{% endfor %}</h6>
+                                <h6>Książki: {% for book in author.book_set.all  %}{% if not forloop.first %},{% endif %}<a href="{% url 'books:book' book.id %}"> {{ book }}</a>{% endfor %}</h6>
                             </div>
                         </div>
                     </div>

@@ -63,10 +63,16 @@ class Book(models.Model):
 
 class Comment(models.Model):
     content = models.TextField("Treść komentarza", max_length=500)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Użytkownik")
-    user = models.TextField("Użytkownik", max_length=25)
+    user = models.ForeignKey(User, verbose_name="Użytkownik", on_delete=models.CASCADE, default=None, blank=True)
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
     book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)
 
     def __str__(self):
         return self.content[:10]
+
+
+class Rating(models.Model):
+    like = models.BooleanField("Like")
+    dislike = models.BooleanField("Dislike")
+    user = models.ForeignKey(User, verbose_name="Użytkownik", on_delete=models.CASCADE, default=None, blank=True)
+    book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)

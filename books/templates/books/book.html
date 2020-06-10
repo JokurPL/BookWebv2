@@ -16,7 +16,7 @@
                             <br>
                             <form id="vote_plus" style="margin-right: 2%">
                                 {% csrf_token %}
-                                {% if is_plus == False and is_minus == True %}
+                                {% if liked and not disliked %}
                                     <fieldset disabled>
                                         <button type="submit" class="btn btn-outline-success"><i
                                                 style="font-size: 200%;"
@@ -33,7 +33,7 @@
                             </form>
                             <form id="vote_minus" style="margin-left: 2%">
                                 {% csrf_token %}
-                                {% if is_plus == True and is_minus == False %}
+                                {% if disliked and not liked %}
                                     <fieldset disabled>
                                         <button type="submit" class="btn btn-outline-danger"><i style="font-size: 200%;"
                                                                                                 class="material-icons">thumb_down</i><br>Nie
@@ -80,7 +80,8 @@
                             <label for="content">Treść komentarza:</label>
                             <textarea name="content" required class="form-control" id="content" rows="8"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-lg btn-primary">{% if not user.is_authenticated %}Zaloguj się, aby dodać komentarz{% else %}Dodaj komentarz{% endif %}</button>
+                        <button type="submit" class="btn btn-lg btn-primary">{% if not user.is_authenticated %}Zaloguj
+                            się, aby dodać komentarz{% else %}Dodaj komentarz{% endif %}</button>
                         <hr>
                     </fieldset>
                 </form>

@@ -33,26 +33,35 @@ class BookView(View):
     def get(self, request, book_id, *args, **kwargs):
         book = get_object_or_404(Book, pk=book_id)
         comments = Comment.objects.filter(book_id=book_id).order_by('-pub_date')
-        user_count = book.book_likes + book.book_dislikes
         title = book.book_title
-        name_session_plus = 'voted_plus_' + str(book_id)
-        name_session_minus = 'voted_minus_' + str(book_id)
-        is_minus = request.session.get(name_session_minus)
-        is_plus = request.session.get(name_session_plus)
-        votes = book.book_likes + book.book_dislikes
-        if user_count > 0:
-            rate = (book.book_likes / user_count) * 100
+        votes = book.rating_set.count()
+        likes = Rating.objects.filter(book=book, like=True).count()
+        if votes > 0:
+            rate = (likes / votes) * 100
         else:
             rate = 0
+        liked = False
+        disliked = False
+        if request.user:
+            try:
+                Rating.objects.get(user=request.user, book=book, like=True)
+                liked = True
+            except Rating.DoesNotExist:
+                liked = False
+            try:
+                y = Rating.objects.get(user=request.user, book=book, dislike=True)
+                disliked = True
+            except Rating.DoesNotExist:
+                disliked = False
         return render(request, 'books/book.html', {
             'book': book,
             'title': title,
             'comments': comments,
-            'rate': round(rate),
             'request': request,
-            'is_plus': is_plus,
-            'is_minus': is_minus,
             'votes': votes,
+            'rate': round(rate),
+            'liked': liked,
+            'disliked': disliked
         })
 
 
@@ -132,34 +141,72 @@ def book_add_comment(request, book_id):
 
 def vote_plus(request, book_id):
     if request.is_ajax() and request.method == 'POST':
-        name_session_plus = 'voted_plus_' + str(book_id)
-        name_session_minus = 'voted_minus_' + str(book_id)
         book = get_object_or_404(Book, pk=book_id)
-        if request.session.get(name_session_plus, True):
-            if book.book_dislikes > 0:
-                book.book_dislikes -= 1
-            book.book_likes += 1
-            book.save()
-            request.session[name_session_plus] = False
-            request.session[name_session_minus] = True
-            request.session.save()
-        return HttpResponse('')
+        user = request.user
+        response_data = {}
+        try:
+            rating = Rating.objects.get(
+                user=user,
+                book=book,
+                dislike=True,
+                like=False
+            )
+            rating.like = True
+            rating.dislike = False
+            rating.save()
+            return HttpResponse('')
+        except Rating.DoesNotExist:
+            try:
+                rating = Rating.objects.get(
+                    user=user,
+                    book=book,
+                    like=True
+                )
+                return HttpResponse('')
+            except Rating.DoesNotExist:
+                Rating.objects.create(
+                    user=user,
+                    book=book,
+                    like=True,
+                    dislike=False
+                )
+                return HttpResponse('')
 
 
 def vote_minus(request, book_id):
     if request.is_ajax() and request.method == 'POST':
-        name_session_plus = 'voted_plus_' + str(book_id)
-        name_session_minus = 'voted_minus_' + str(book_id)
-        if request.session.get(name_session_minus, True):
-            book = get_object_or_404(Book, pk=book_id)
-            if book.book_likes > 0:
-                book.book_likes -= 1
-            book.book_dislikes += 1
-            book.save()
-            request.session[name_session_plus] = True
-            request.session[name_session_minus] = False
-            request.session.save()
-        return HttpResponse('')
+        book = get_object_or_404(Book, pk=book_id)
+        user = request.user
+        response_data = {}
+        try:
+            rating = Rating.objects.get(
+                user=user,
+                book=book,
+                like=True,
+                dislike=False
+            )
+            rating.like = False
+            rating.dislike = True
+            rating.save()
+            return HttpResponse('')
+        except Rating.DoesNotExist:
+            try:
+                rating = Rating.objects.get(
+                    user=user,
+                    book=book,
+                    dislike=True,
+                    like=False
+                )
+                return HttpResponse('')
+            except Rating.DoesNotExist:
+                Rating.objects.create(
+                    user=user,
+                    book=book,
+                    like=False,
+                    dislike=True
+                )
+                response_data = 'success'
+                return HttpResponse('')
 
 
 def search(request):

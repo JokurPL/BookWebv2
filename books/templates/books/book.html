@@ -86,7 +86,7 @@
                     </fieldset>
                 </form>
                 {% if comments %}
-                    {% for comment in comments %}
+                    {% for comment in page_obj %}
                         <ul class="list-unstyled">
                             <li class="media"
                                 style="padding: 1%; background: rgba(0,0,0,0.1); border-left: 2px solid #222;">
@@ -99,6 +99,49 @@
                         </ul>
                         <hr>
                     {% endfor %}
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Poprzednia"
+                                       href="?strona={{ page_obj.previous_page_number }}"
+                                       tabindex="-1">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" aria-label="Poprzednia" aria-disabled="true">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for page in page_obj.paginator.page_range %}
+                                {% if page_obj.number == page %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?strona={{ page }}">{{ page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?strona={{ page_obj.next_page_number }}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" aria-label="Następna" aria-disabled="true">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+                    </nav>
                 {% else %}
                     <div class="alert alert-warning" role="alert">
                         <h6>Brak komentarzy</h6>

@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 import json
+from django.core.paginator import Paginator
+
 from django.template import loader
 
 from .models import *
@@ -33,6 +35,9 @@ class BookView(View):
     def get(self, request, book_id, *args, **kwargs):
         book = get_object_or_404(Book, pk=book_id)
         comments = Comment.objects.filter(book_id=book_id).order_by('-pub_date')
+        paginator = Paginator(comments, 10)
+        page_number = request.GET.get('strona')
+        page_obj = paginator.get_page(page_number)
         title = book.book_title
         votes = book.rating_set.count()
         likes = Rating.objects.filter(book=book, like=True).count()
@@ -42,14 +47,15 @@ class BookView(View):
             rate = 0
         liked = False
         disliked = False
-        if request.user:
+        if request.user.is_authenticated:
+            user = request.user
             try:
-                Rating.objects.get(user=request.user, book=book, like=True)
+                Rating.objects.get(user=user, book=book, like=True)
                 liked = True
             except Rating.DoesNotExist:
                 liked = False
             try:
-                y = Rating.objects.get(user=request.user, book=book, dislike=True)
+                Rating.objects.get(user=user, book=book, dislike=True)
                 disliked = True
             except Rating.DoesNotExist:
                 disliked = False
@@ -61,7 +67,8 @@ class BookView(View):
             'votes': votes,
             'rate': round(rate),
             'liked': liked,
-            'disliked': disliked
+            'disliked': disliked,
+            'page_obj': page_obj
         })
 
 

@@ -219,8 +219,7 @@ def vote_minus(request, book_id):
 def search(request):
     query = request.POST['query']
     try:
-        books = Book.objects.filter(Q(book_title__icontains=query) | Q(book_author__name__icontains=query) | Q(
-            book_category__category_name__icontains=query))
+        books = Book.objects.filter(Q(book_title__icontains=query) | Q(book_author__name__icontains=query) | Q(book_category__category_name__icontains=query))
     except Book.DoesNotExist:
         books = None
     context = {

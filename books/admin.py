@@ -3,17 +3,27 @@ from .models import Book, Author, Category, Comment, Rating
 # Register your models here.
 from django.db import models
 
+admin.site.site_header = "BookWeb"
+
 
 class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('book_likes', 'pub_date',)
     fieldsets = [
-        ('Ogólne informacje', {'fields':['book_title', 'book_author', 'book_desc', 'book_category', 'book_img', 'pub_date']}),
+        ('Ogólne informacje',
+         {'fields': ['book_title', 'book_author', 'book_desc', 'book_category', 'book_img', 'pub_date']}),
         ('Informacje od użytkowników', {'fields': ['book_likes', ]}),
     ]
 
 
+class RatingAdmin(admin.ModelAdmin):
+    readonly_fields = ('like', 'dislike', 'user', 'book')
+
+
+class CommentAdmin(admin.ModelAdmin):
+    readonly_fields = ('content', 'user', 'book')
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author)
 admin.site.register(Category)
-admin.site.register(Comment)
-admin.site.register(Rating)
+admin.site.register(Comment, CommentAdmin)
+admin.site.register(Rating, RatingAdmin)

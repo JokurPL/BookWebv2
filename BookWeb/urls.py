@@ -29,7 +29,8 @@ handler500 = 'books.views.error_500'
 
 urlpatterns = [
     path('', include('books.urls')),
-    path('panel-administratora/', admin.site.urls),
+    path('panel-administratora/', admin.site.urls, name='admin_panel'),
+    # path('panel-administratora/doc/', include('django.contrib.admindocs.urls')),
 ]
 
 if settings.DEBUG:

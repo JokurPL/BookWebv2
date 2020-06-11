@@ -4,6 +4,8 @@ from PIL import Image
 import sys
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.utils.html import format_html
+from django.urls import reverse
 
 
 # Create your models here.
@@ -11,12 +13,20 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 class Author(models.Model):
     name = models.CharField("Autor", max_length=50)
 
+    class Meta:
+        verbose_name = 'Autor'
+        verbose_name_plural = 'Autorzy'
+
     def __str__(self):
         return self.name
 
 
 class Category(models.Model):
     category_name = models.CharField("Kategoria", max_length=50)
+
+    class Meta:
+        verbose_name = 'Kategoria'
+        verbose_name_plural = 'Kategorie'
 
     def __str__(self):
         return self.category_name
@@ -57,6 +67,10 @@ class Book(models.Model):
 
         super(Book, self).save()
 
+    class Meta:
+        verbose_name = 'Książkę'
+        verbose_name_plural = 'Książki'
+
     def __str__(self):
         return self.book_title
 
@@ -67,6 +81,10 @@ class Comment(models.Model):
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
     book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)
 
+    class Meta:
+        verbose_name = 'Komentarz'
+        verbose_name_plural = 'Komentarze'
+
     def __str__(self):
         return self.content[:10]
 
@@ -76,3 +94,10 @@ class Rating(models.Model):
     dislike = models.BooleanField("Dislike")
     user = models.ForeignKey(User, verbose_name="Użytkownik", on_delete=models.CASCADE, default=None, blank=True)
     book = models.ForeignKey(Book, verbose_name="Książka", on_delete=models.CASCADE, default=None, blank=True)
+
+    class Meta:
+        verbose_name = 'Ocena'
+        verbose_name_plural = 'Oceny'
+
+    def __str__(self):
+        return "Ocena dla: " + self.book.book_title

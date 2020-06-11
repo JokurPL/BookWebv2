@@ -1,11 +1,11 @@
 {% extends "books/template.html" %}
 {% block content %}
-    <h1 style="padding: 2%">Szukana fraza: <b>{{ query }}</b> <span style="font-size: 50%">({{ books.count }} {% if books.count == 0 %}wyników{% elif books.count == 1 %}wynik{% else %}wyniki{% endif %} )</span></h1>
+    <h1 style="padding: 2%">Szukana fraza: <b>{{ query }}</b> <span style="font-size: 50%">({{ books.distinct.count }} {% if books.count == 0 %}wyników{% elif books.count == 1 %}wynik{% else %}wyniki{% endif %} )</span></h1>
      <div class="container">
          <br>
         {% if books %}
             <div class="row row-cols-1 row-cols-md-3">
-            {% for book in books %}
+            {% for book in books.distinct %}
             <div class="col mb-4">
                         <div class="card">
                             <img src="{{ book.book_img.url }}" width="{{ book.book_img.width }}" class="card-img-top" alt="Okładka">

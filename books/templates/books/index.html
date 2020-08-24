@@ -14,19 +14,20 @@
                                 <hr>
                                 <h6>Kategoria: <a href="{% url 'books:book_category' book.id %}">{{ book.book_category.category_name }} </a></h6>
                                 {% if book.book_author.count == 1 %}
-                                            <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
+                                            <h6>Autor: {% for author in book.book_author.all %}<a href="{% url 'books:book_author' author.id %}">{{ author.name }}</a> {% endfor %}</h6>
                                           {% else %}
-                                            <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_author' book.id %}">{{author.name}}</a>{% endfor %}</h6>
+                                            <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %} <a href="{% url 'books:book_author' author.id %}">{{author.name}}</a>{% endfor %}</h6>
                                       {% endif %}
                                 <p class="card-text">{{ book.book_desc|truncatewords:50 }} </p>
                                 <p class="text-center"><a href="{% url 'books:book' book.id %}">Czytaj dalej</a>  </p>
                             </div>
                             <div class="card-footer">
-                                {% if book.book_likes > 0 %}
-                                    <small class="text-success"><b>Ilość plusów: {{ book.book_likes }}</b></small>
-                                {% else %}
-                                    <small class="text-danger"><b>Ilość plusów: {{ book.book_likes }}</b></small>
-                                {% endif %}
+                                    <small class="text-center">
+                                        <b>
+                                            <span class="material-icons text-success">thumb_up</span>2
+                                            <span class="material-icons text-danger" style="margin-left: 3%;">thumb_down</span>2</b>
+                                        </b>
+                                    </small>
                             </div>
                         </div>
 

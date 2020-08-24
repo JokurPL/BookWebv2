@@ -24,7 +24,7 @@ def error_500(request):
 
 class IndexBooksView(View):
     def get(self, request, *args, **kwargs):
-        books = Book.objects.order_by('-pub_date')[:5]
+        books = Book.objects.order_by('-pub_date')
         context = {
             'books': books,
         }
@@ -82,8 +82,14 @@ class AuthorsView(View):
         return render(request, 'authors/authors.html', context)
 
 
-def author(request, author_id):
-    return HttpResponse(author_id)
+class AuthorView(View):
+    def get(self, request, author_id, *args, **kwargs):
+        author = get_object_or_404(Author, pk=author_id)
+
+        context = {
+            'author': author
+        }
+        return render(request, 'authors/author.html', context)
 
 
 def log_in(request):
@@ -106,7 +112,7 @@ def register_user(request):
         password = request.POST['password']
         password_repeat = request.POST['password_repeat']
         email = request.POST['email']
-        response_data = {}
+        response_data = {}  
         if password != password_repeat:
             response_data['result'] = 'failed'
         else:
@@ -229,5 +235,5 @@ def search(request):
     return render(request, 'books/search_query.html', context)
 
 
-def category(request, book_id):
-    return HttpResponse("Kategoria: ")
+def category(request, category_id):
+    return HttpResponse("Kategoria: %s"  % category_id)

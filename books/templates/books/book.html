@@ -59,10 +59,10 @@
                 <h1 class="text-monospace">{{ book.book_title }}</h1>
                 {% if book.book_author.count == 1 %}
                     <h6>Autor: {% for author in book.book_author.all %}
-                        <a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a> {% endfor %}</h6>
+                        <a href="{% url 'books:book_author' author.id %}">{{ author.name }}</a>| Kategoria: <a href="{% url 'books:book_category' book.book_category.id %}">{{ book.book_category }}</a>{% endfor %}</h6>
                 {% else %}
                     <h6>Autorzy:{% for author in book.book_author.all %}{% if not forloop.first %},{% endif %}
-                        <a href="{% url 'books:book_author' book.id %}">{{ author.name }}</a>{% endfor %}</h6>
+                        <a href="{% url 'books:book_author' author.id %}">{{ author.name }}</a>{% endfor %} | Kategoria: <a href="{% url 'books:book_category' book.book_category.id %}">{{ book.book_category }}</a></h6>
                 {% endif %}
                 <hr>
                 <div>

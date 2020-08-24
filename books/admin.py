@@ -7,11 +7,10 @@ admin.site.site_header = "BookWeb"
 
 
 class BookAdmin(admin.ModelAdmin):
-    readonly_fields = ('book_likes', 'pub_date',)
+    readonly_fields = ('pub_date',)
     fieldsets = [
         ('Ogólne informacje',
          {'fields': ['book_title', 'book_author', 'book_desc', 'book_category', 'book_img', 'pub_date']}),
-        ('Informacje od użytkowników', {'fields': ['book_likes', ]}),
     ]
 
 

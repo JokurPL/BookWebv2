@@ -4,8 +4,8 @@ from PIL import Image
 import sys
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.utils.html import format_html
-from django.urls import reverse
+# from django.utils.html import format_html
+# from django.urls import reverse
 
 
 # Create your models here.
@@ -44,6 +44,8 @@ class Book(models.Model):
     book_category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Kategoria")
     pub_date = models.DateTimeField('Data utworzenia', auto_now_add=True)
 
+    book_rate = models.IntegerField("Ocena książki(%)", null=True)
+
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # Opening the uploaded image
         try:
@@ -51,10 +53,10 @@ class Book(models.Model):
 
             output = BytesIO()
 
-            IM_RESIZE = im.resize((350, 490))
+            im_resize = im.resize((350, 490))
 
             # Resize/modify the image
-            im = IM_RESIZE
+            im = im_resize
 
             # after modifications, save it to the output
             im.save(output, format='JPEG', quality=100)

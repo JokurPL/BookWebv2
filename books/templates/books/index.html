@@ -22,12 +22,13 @@
                                 <p class="text-center"><a href="{% url 'books:book' book.id %}">Czytaj dalej</a>  </p>
                             </div>
                             <div class="card-footer">
-                                    <small class="text-center">
-                                        <b>
-                                            <span class="material-icons text-success">thumb_up</span>2
-                                            <span class="material-icons text-danger" style="margin-left: 3%;">thumb_down</span>2</b>
-                                        </b>
-                                    </small>
+                                        <p class="text-center font-weight-bold" style="padding: 0 !important; margin: 0 !important; font-size: 100%;">
+                                            {% if book.book_rate or book.book_rate == 0 %}
+                                                Spodobała się <span class="{% if book.book_rate > 50 %} text-success {% else %} text-danger {% endif %}">{{ book.book_rate }}%</span> czytelników
+                                            {% else %}
+                                                Brak ocen
+                                            {% endif %}
+                                        </p>
                             </div>
                         </div>
 

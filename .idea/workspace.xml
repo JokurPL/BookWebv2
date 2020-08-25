@@ -2,21 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff937ba-569b-42cb-a75c-108ecf22738e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/books/migrations/0004_auto_20200612_1420.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/templates/authors/author.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/06/06/12/20/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/07/07/19/20/Desktop-Wallpaper-Blackpink.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/07/07/24/20/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc79_SPq96i2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/07/07/26/20/unnamed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/23/20/art_bookcover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/23/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0005_book_book_rate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/migrations/0006_auto_20200825_2048.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc79_SPq96i2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/art_bookcover.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/art_bookcover_CDdzyJV.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/art_bookcover_CDdzyJV_mduP5lO.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jCB19r.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_3ecMCtN.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_Lp6QLOt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_T7NMJrX.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_TakGZyk.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_cZXxzRM.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_hSFvnrL.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/b55b77cb-6caa-4f51-823f-f0724017da03_830x830_V4SiueY_6VS4tyF_6jC_uuEzotF.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/covers/2020/08/08/25/20/unnamed.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/templates/authors/authors.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/authors/authors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/books/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/book.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/templates/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/books/templates/books/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,13 +87,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\simci\Desktop\Dev\BookWeb\BookWeb\.idea" />
-      </set>
-    </option>
-  </component>
+  <component name="JupyterTrust" id="7b746355-8912-43c0-87b6-6fb9cea73fc2" />
   <component name="ProjectId" id="1XszvfQl9CYS84PLPdECj1cZROW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -92,7 +95,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -148,6 +150,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -221,7 +224,12 @@
       <workItem from="1597598334678" duration="145000" />
       <workItem from="1597688819315" duration="1701000" />
       <workItem from="1598189532953" duration="5756000" />
-      <workItem from="1598285109278" duration="234000" />
+      <workItem from="1598285109278" duration="529000" />
+      <workItem from="1598285833316" duration="1436000" />
+      <workItem from="1598295776623" duration="670000" />
+      <workItem from="1598296470783" duration="820000" />
+      <workItem from="1598368598722" duration="72000" />
+      <workItem from="1598378352200" duration="3140000" />
     </task>
     <task id="LOCAL-00001" summary="Star using Ajax">
       <created>1591528760828</created>
@@ -283,7 +291,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -300,13 +308,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -333,26 +340,26 @@
     <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824/-1280.54.1280.984@0.0.1536.824" timestamp="1589747417554" />
     <state x="622" y="197" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590136381570" />
     <state x="448" y="127" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1592987103029" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1598285177595">
+    <state width="1537" height="146" key="GridCell.Tab.0.bottom" timestamp="1598381294428">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1598285177595" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1598285177595">
+    <state width="1537" height="146" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1598381294428" />
+    <state width="1537" height="146" key="GridCell.Tab.0.center" timestamp="1598381294428">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1598285177595" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1598285177595">
+    <state width="1537" height="146" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1598381294428" />
+    <state width="1537" height="146" key="GridCell.Tab.0.left" timestamp="1598381294428">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590136383354" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1598285177595" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1598285177595">
+    <state width="1537" height="146" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1598381294428" />
+    <state width="1537" height="146" key="GridCell.Tab.0.right" timestamp="1598381294428">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590136383355" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1598285177595" />
+    <state width="1537" height="146" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1598381294428" />
     <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1591868057764">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
@@ -373,9 +380,9 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="361" y="180" key="Vcs.Push.Dialog.v2/0.30.1536.834@0.30.1536.834" timestamp="1591889636125" />
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1591864921403">
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1598380088752">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1591864921403" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1598380088752" />
   </component>
 </project>

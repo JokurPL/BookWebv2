@@ -25,6 +25,7 @@ def error_500(request):
 class IndexBooksView(View):
     def get(self, request, *args, **kwargs):
         books = Book.objects.order_by('-pub_date')
+
         context = {
             'books': books,
         }
@@ -112,7 +113,7 @@ def register_user(request):
         password = request.POST['password']
         password_repeat = request.POST['password_repeat']
         email = request.POST['email']
-        response_data = {}  
+        response_data = {}
         if password != password_repeat:
             response_data['result'] = 'failed'
         else:
@@ -157,6 +158,7 @@ def vote_plus(request, book_id):
         book = get_object_or_404(Book, pk=book_id)
         user = request.user
         response_data = {}
+        update_book_rating(book)
         try:
             rating = Rating.objects.get(
                 user=user,
@@ -167,6 +169,7 @@ def vote_plus(request, book_id):
             rating.like = True
             rating.dislike = False
             rating.save()
+            update_book_rating(book)
             return HttpResponse('')
         except Rating.DoesNotExist:
             try:
@@ -175,6 +178,7 @@ def vote_plus(request, book_id):
                     book=book,
                     like=True
                 )
+                update_book_rating(book)
                 return HttpResponse('')
             except Rating.DoesNotExist:
                 Rating.objects.create(
@@ -183,6 +187,7 @@ def vote_plus(request, book_id):
                     like=True,
                     dislike=False
                 )
+                update_book_rating(book)
                 return HttpResponse('')
 
 
@@ -201,6 +206,7 @@ def vote_minus(request, book_id):
             rating.like = False
             rating.dislike = True
             rating.save()
+            update_book_rating(book)
             return HttpResponse('')
         except Rating.DoesNotExist:
             try:
@@ -210,6 +216,7 @@ def vote_minus(request, book_id):
                     dislike=True,
                     like=False
                 )
+                update_book_rating(book)
                 return HttpResponse('')
             except Rating.DoesNotExist:
                 Rating.objects.create(
@@ -219,13 +226,15 @@ def vote_minus(request, book_id):
                     dislike=True
                 )
                 response_data = 'success'
+                update_book_rating(book)
                 return HttpResponse('')
 
 
 def search(request):
     query = request.POST['query']
     try:
-        books = Book.objects.filter(Q(book_title__icontains=query) | Q(book_author__name__icontains=query) | Q(book_category__category_name__icontains=query))
+        books = Book.objects.filter(Q(book_title__icontains=query) | Q(book_author__name__icontains=query) | Q(
+            book_category__category_name__icontains=query))
     except Book.DoesNotExist:
         books = None
     context = {
@@ -236,4 +245,19 @@ def search(request):
 
 
 def category(request, category_id):
-    return HttpResponse("Kategoria: %s"  % category_id)
+    return HttpResponse("Kategoria: %s" % category_id)
+
+
+def update_book_rating(book):
+    try:
+        likes = Rating.objects.filter(like=True, book=book).count()
+        print("lajki: %s " % likes)
+    except Rating.DoesNotExist:
+        likes = 0
+    try:
+        dislikes = Rating.objects.filter(dislike=True, book=book).count()
+    except Rating.DoesNotExist:
+        dislikes = 0
+    rating = (likes / (likes + dislikes)) * 100
+    book.book_rate = int(rating)
+    book.save()

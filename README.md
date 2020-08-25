@@ -1,6 +1,6 @@
 # BookWeb
 
-Aplikacja internetowa pełniącja funkcję serwisu o książkach oparta na framework'u [Django](https://www.djangoproject.com/).__
+Aplikacja internetowa pełniącja funkcję serwisu o książkach oparta na framework'u [Django](https://www.djangoproject.com/). <br/>
 Frontend oparty na [Boostrap'ie](https://getbootstrap.com/) w wersji 4.5.0
 
 ### Funkcje
